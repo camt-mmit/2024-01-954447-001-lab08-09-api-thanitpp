@@ -1,9 +1,12 @@
 import { isDevMode } from '@angular/core';
 import { Routes } from '@angular/router';
+import { ContactCreatePageComponent } from './pages/contacts/contacts-create-page/contacts-create-page.component';
+import { ContactsListPageComponent } from './pages/contacts/contacts-list-page/contacts-list-page.component';
 import { GlEventCreatePageComponent } from './pages/events/gl-event-create-page/gl-event-create-page.component';
 import { GlEventsListPageComponent } from './pages/events/gl-events-list-page/gl-events-list-page.component';
 import { GlAuthorizationPageComponent } from './pages/gl-authorization-page/gl-authorization-page.component';
 import { GlPageComponent } from './pages/gl-page/gl-page.component';
+import { ContactsService } from './services/contacts.service';
 import { EventsService } from './services/events.service';
 import { provideOauth } from './services/oauth.service';
 
@@ -30,13 +33,19 @@ export default [
         data: { hideNavigation: true },
         component: GlAuthorizationPageComponent,
       },
-
       {
         path: '',
         component: GlPageComponent,
         children: [
-          { path: '', redirectTo: 'events', pathMatch: 'full' },
-
+          { path: '', redirectTo: 'contacts', pathMatch: 'full' },
+          {
+            path: 'contacts',
+            providers: [ContactsService],
+            children: [
+              { path: '', component: ContactsListPageComponent },
+              { path: 'create', component: ContactCreatePageComponent },
+            ],
+          },
           {
             path: 'events',
             providers: [EventsService],

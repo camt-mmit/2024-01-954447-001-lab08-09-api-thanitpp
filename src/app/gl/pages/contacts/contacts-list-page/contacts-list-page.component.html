@@ -1,0 +1,42 @@
+<button routerLink="../contacts/create" class="add-button">Add Contact</button>
+<div class="contacts-container">
+  <p *ngIf="isLoading">Loading contacts...</p>
+
+  <table *ngIf="!isLoading && contacts.length > 0; else noContacts">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>
+          {{
+            contact.names && contact.names.length > 0 ?
+              contact.names[0].displayName
+            : 'No Name'
+          }}
+        </td>
+        <td>
+          {{
+            contact.emailAddresses && contact.emailAddresses.length > 0 ?
+              contact.emailAddresses[0].value
+            : 'No Email'
+          }}
+        </td>
+        <td>
+          {{
+            contact.phoneNumbers && contact.phoneNumbers.length > 0 ?
+              contact.phoneNumbers[0].value
+            : 'No Phone'
+          }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noContacts>
+    <p *ngIf="!isLoading">No contacts found.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<h1>Create Contact</h1>
+<form (ngSubmit)="onSubmit()" class="contact-form">
+  <div class="form-group">
+    <label for="givenName">First Name</label>
+    <input
+      id="givenName"
+      [(ngModel)]="contact.givenName"
+      name="givenName"
+      placeholder="First Name"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="familyName">Last Name</label>
+    <input
+      id="familyName"
+      [(ngModel)]="contact.familyName"
+      name="familyName"
+      placeholder="Last Name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      [(ngModel)]="contact.email"
+      name="email"
+      type="email"
+      placeholder="Email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number</label>
+    <input
+      id="phoneNumber"
+      [(ngModel)]="contact.phoneNumber"
+      name="phoneNumber"
+      type="tel"
+      placeholder="Phone Number"
+    />
+  </div>
+  <div class="button-group">
+    <button type="submit" class="save-button">Save</button>
+    <button type="button" (click)="cancel()" class="cancel-button">
+      Cancel
+    </button>
+  </div>
+</form>
